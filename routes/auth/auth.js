@@ -55,7 +55,11 @@ router.post('/login', async (request, response) => {
 				token
 			});
 		} else {
-			response.status(401).send('Wrong email address or password');
+			response
+				.status(401)
+				.send([
+					{ message: 'Email is already exist', path: [ 'email' ], context: { label: 'email already exist' } }
+				]);
 		}
 	} else {
 		response.status(401).send('Wrong email address or password');
